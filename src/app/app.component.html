@@ -1,7 +1,10 @@
-<div>{{title + '=>' + this.text}}</div>
-<!--<div>{{user?.info?.male}}</div>-->
-<img [src]="imgSrc" [alt]="title" [style.width.%]="imgWidth"  #htmlElement>
-<p>{{htmlElement.src}}</p>
-<div [innerHTML]="content">
-</div>
-<input type="text" (input)="search($event,  htmlElement)">
+<course-header [sideNavDrawer]="drawer" [titleText]="title"></course-header>
+<course-sidenav (setDrawer)="setSideNav($event)">
+  <ng-template #contentTemplate>
+    <ul class="list">
+      <li>Title 1</li>
+      <li>Title 2</li>
+    </ul>
+  </ng-template>
+</course-sidenav>
+
