@@ -7,7 +7,6 @@ import {
   TemplateRef,
   ViewChild,
   ViewContainerRef,
-  ViewEncapsulation
 } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 
@@ -15,7 +14,7 @@ import { MatDrawer } from '@angular/material/sidenav';
   selector: 'course-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  // encapsulation: ViewEncapsulation.ShadowDom
 })
 export class SidenavComponent implements OnInit {
 
