@@ -1,3 +1,6 @@
+import { of } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
+
 export interface IProduct {
   _id: string;
   title: string;
@@ -7,7 +10,7 @@ export interface IProduct {
   isFavorite: boolean;
 };
 
-export const products: IProduct[] = [
+export const mockedProducts: IProduct[] = [
   {
     '_id': '5ff3495c317f99541403e0fe',
     title: 'Product 111',
@@ -81,3 +84,14 @@ export const products: IProduct[] = [
     'isFavorite': true
   }
 ];
+
+export const mockedProducts$ = of(mockedProducts)
+  .pipe(
+    tap(() => {
+      console.log('http request');
+    }),
+    delay(3000),
+    tap(() => {
+      console.log('http response');
+    }),
+  );
