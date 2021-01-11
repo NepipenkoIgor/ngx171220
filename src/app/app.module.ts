@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SharedModule } from './shared/shared.module';
 import { ProductsFilterPipe } from './products-filter.pipe';
+import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
+import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
+import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 
 // NgModule => es6
 // declarations => let/const => Directives, Pipes
@@ -19,7 +22,10 @@ import { ProductsFilterPipe } from './products-filter.pipe';
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    ProductsFilterPipe
+    ProductsFilterPipe,
+    ExchangeRatesComponent,
+    ExchangeRatesDirective,
+    HiddenDirective
   ],
   imports: [
     BrowserModule,

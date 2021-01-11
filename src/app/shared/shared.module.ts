@@ -11,12 +11,14 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const internalModules = [
   CommonModule,
   MatButtonModule,
   MatIconModule,
   MatCardModule,
+  MatCheckboxModule
 ];
 
 const externalModules = [
@@ -26,7 +28,7 @@ const externalModules = [
   MatProgressSpinnerModule,
   MatGridListModule,
   MatFormFieldModule,
-  MatInputModule,
+  MatInputModule
 ];
 
 @NgModule({

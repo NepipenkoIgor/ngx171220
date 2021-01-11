@@ -4,7 +4,7 @@ import { IProduct } from '../products';
 @Component({
   selector: 'course-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  styleUrls: ['./product-card.component.css'],
 })
 export class ProductCardComponent {
 

@@ -4,6 +4,7 @@ import { IProduct, mockedProducts$ } from './products';
 import { Observable } from 'rxjs';
 import { UnSubscriber } from './unsubscriber';
 import { takeUntil } from 'rxjs/operators';
+import { MatCheckboxChange } from '@angular/material/checkbox/checkbox';
 
 @Component({
   selector: 'course-root',
@@ -13,6 +14,7 @@ import { takeUntil } from 'rxjs/operators';
 export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
   public title = 'ngx171220 ';
   public drawer!: MatDrawer;
+  public onlyFavorites = false;
 
   public products$: Observable<IProduct[]> = mockedProducts$;
   public searchTerm = '';
@@ -63,21 +65,7 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
     this.searchTerm = (event.target as HTMLInputElement).value;
   }
 
-  // tslint:disable-next-line:variable-name
-  public searchByText(products: IProduct[]): IProduct[] {
-    // if (!text) {
-    //   return products;
-    // }
-    console.log('recalc');
-    return products.filter((product: IProduct) => {
-      return `${product.title} ${product.price}`.toLowerCase().includes(this.searchTerm.toLowerCase());
-    });
+  public searchByFavorites({checked}: MatCheckboxChange): void {
+    this.onlyFavorites = checked;
   }
 }
-
-/*
-        (ChangeDetection)                                                                                 (ChangeDetection)----
-   ----(oldValue = undefined, newValue=undefined ) (oldValue=undefined, newValue=object)------------------(oldValue, newValue )---
- <span>{{product.title}} - {{product.price | currency: 'USD'}}</span>
-
- */

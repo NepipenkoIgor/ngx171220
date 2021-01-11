@@ -1,6 +1,7 @@
-import { OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 
+@Injectable()
 export class UnSubscriber implements OnDestroy {
   // public subscriptions: Subscription[] = [];
   //
