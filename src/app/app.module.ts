@@ -10,6 +10,10 @@ import { ProductsFilterPipe } from './products-filter.pipe';
 import { ExchangeRatesComponent } from './header/exchange-rates/exchange-rates.component';
 import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.directive';
 import { HiddenDirective } from './header/exchange-rates/hidden.directive';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { BASE_URL } from './config';
+import { AuthInterceptor } from './auth.interceptor';
 
 // NgModule => es6
 // declarations => let/const => Directives, Pipes
@@ -30,7 +34,23 @@ import { HiddenDirective } from './header/exchange-rates/hidden.directive';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    SharedModule,
+    SharedModule.forRoot(),
+    HttpClientModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: BASE_URL,
+      useValue: environment.baseUrl,
+    },
+    {
+      provide: 'baseUrl',
+      useValue: 'error',
+    }
   ],
   bootstrap: [AppComponent]
 })

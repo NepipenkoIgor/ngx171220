@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Optional } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { IProduct, mockedProducts$ } from './products';
 import { Observable } from 'rxjs';
 import { UnSubscriber } from './unsubscriber';
-import { takeUntil } from 'rxjs/operators';
 import { MatCheckboxChange } from '@angular/material/checkbox/checkbox';
+import { IProduct, ProductsService } from './shared/services/products.service';
 
 @Component({
   selector: 'course-root',
@@ -16,28 +15,19 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
   public drawer!: MatDrawer;
   public onlyFavorites = false;
 
-  public products$: Observable<IProduct[]> = mockedProducts$;
+  public products$: Observable<IProduct[]> = this.productsService.getProducts();
   public searchTerm = '';
   public imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png';
 
-  constructor(
-    // private cdr: ChangeDetectorRef
+  public constructor(
+    // private cdr: ChangeDetectorRef,
+    @Optional() private productsService: ProductsService
   ) {
     super();
   }
 
   public ngOnInit(): void {
-    mockedProducts$
-      .pipe(
-        takeUntil(this.unSubscriber$$)
-      )
-      .subscribe((products: IProduct[]) => {
-        console.log(products);
-        // this.products = products;
-      }, () => {
-      }, () => {
-        console.log('COMPLETED');
-      });
+    console.log('ProductCardComponent ==>', this.productsService?.timestamp);
   }
 
 
