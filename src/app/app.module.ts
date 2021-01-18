@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { BASE_URL } from './config';
 import { AuthInterceptor } from './auth.interceptor';
+import { ModalModule } from './modal/modal.module';
 
 // NgModule => es6
 // declarations => let/const => Directives, Pipes
@@ -35,8 +36,10 @@ import { AuthInterceptor } from './auth.interceptor';
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ModalModule
   ],
+  // entryComponents: [ProductConfirmationComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

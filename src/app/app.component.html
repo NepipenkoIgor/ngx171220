@@ -7,7 +7,6 @@
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
     <mat-checkbox (change)="searchByFavorites($event)">Only favorites!</mat-checkbox>
-
     <mat-grid-list cols="4" rowHeight="500" *ngIf="products$ | async as products; else loader">
       <mat-grid-tile *ngFor="let p of products | productsFilter: searchTerm: onlyFavorites; let isOdd =odd">
         <course-product-card [product]="p" [isOdd]="isOdd"></course-product-card>
@@ -20,4 +19,6 @@
     </ng-template>
   </ng-template>
 </course-sidenav>
+
+<course-modal></course-modal>
 

@@ -32,7 +32,6 @@ export class ExchangeRatesDirective implements OnInit {
   }
 
   public ngOnInit(): void {
-    console.log(this.rates);
     this.context = {
       $implicit: this.rates[this.index],
       controller: {

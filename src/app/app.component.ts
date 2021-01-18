@@ -27,7 +27,29 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    console.log('ProductCardComponent ==>', this.productsService?.timestamp);
+
+    // const sequence$$ = new ReplaySubject();
+    //
+    // sequence$$.subscribe((v) => {
+    //   console.log(`From subject`, v);
+    // });
+    //
+    // setTimeout(() => {
+    //   const obj = {title: 'RxJS awesome'};
+    //   console.log('EMIT event', obj);
+    //   sequence$$.next(obj);
+    // }, 5000);
+    //
+    // setTimeout(() => {
+    //   const obj = {title: 'Angular awesome'};
+    //   console.log('EMIT event', obj);
+    //   sequence$$.next(obj);
+    // }, 10000);
+    // setTimeout(() => {
+    //   sequence$$.subscribe((v) => {
+    //     console.log(`From subject 2`, v);
+    //   });
+    // }, 15000);
   }
 
 
@@ -36,8 +58,8 @@ export class AppComponent extends UnSubscriber implements OnInit, OnDestroy {
     super.ngOnDestroy();
   }
 
-  public toggleSideNav(event: any): void {
-    console.log(event);
+  public toggleSideNav(_event: any): void {
+   // console.log(event);
   }
 
   public setSideNav(drawer: MatDrawer): void {

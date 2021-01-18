@@ -17,7 +17,6 @@ export class ProductsFilterPipe implements PipeTransform {
     if (!searchTerm) {
       return result;
     }
-    console.log('recalc pipe');
     return result.filter((product: IProduct) => {
       return `${product.title} ${product.price}`.toLowerCase().includes(searchTerm.toLowerCase());
     });

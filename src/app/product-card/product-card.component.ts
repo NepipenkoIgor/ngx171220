@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, Optional, Self } from '@angular/core';
-import { IProduct, ProductsService } from '../shared/services/products.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { IProduct } from '../shared/services/products.service';
+import { ModalService } from '../modal/modal.service';
 
 @Component({
   selector: 'course-product-card',
@@ -21,12 +22,28 @@ export class ProductCardComponent implements OnInit {
   public isOdd!: boolean;
 
   public constructor(
-    @Optional() @Self() private productsService: ProductsService
+    private modalService: ModalService
   ) {
   }
 
   public ngOnInit(): void {
-    console.log('ProductCardComponent ==>', this.productsService?.timestamp);
   }
 
+  public async addToCart(): Promise<void> {
+    const m = await import('./product-confirmation/product-confirmation.component')
+    this.modalService.open({
+      component: m.ProductConfirmationComponent,
+      context: {
+        product: {...this.product},
+        save: () => {
+          // add to cart
+          console.log('Move product to cart')
+          this.modalService.close();
+        },
+        close: () => {
+          this.modalService.close();
+        }
+      }
+    });
+  }
 }

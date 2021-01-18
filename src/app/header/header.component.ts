@@ -24,6 +24,6 @@ export class HeaderComponent implements DoCheck {
     {value: 33, currency: 'EUR'},
   ]
   public ngDoCheck(): void {
-    console.log('Detect changes');
+   // console.log('Detect changes');
   }
 }
