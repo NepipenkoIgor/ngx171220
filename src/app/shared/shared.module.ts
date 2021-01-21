@@ -7,12 +7,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { ProductCardComponent } from '../product-card/product-card.component';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { ProductsService } from './services/products.service';
+import { BASE_URL } from '../config';
+import { environment } from '../../environments/environment';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 const internalModules = [
   CommonModule,
@@ -29,26 +31,34 @@ const externalModules = [
   MatProgressSpinnerModule,
   MatGridListModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  HttpClientModule,
 ];
 
 @NgModule({
-  declarations: [ProductCardComponent],
   imports: internalModules,
   exports: [
     ...internalModules,
     ...externalModules,
-    ProductCardComponent
   ],
-
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ]
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
-    return  {
+    return {
       ngModule: SharedModule,
       providers: [
-        ProductsService
+        {
+          provide: BASE_URL,
+          useValue: environment.baseUrl,
+        },
       ]
-    }
+    };
   }
 }

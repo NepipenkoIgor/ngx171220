@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Inject, Injectable } from '@angular/core';
-import { BASE_URL } from './config';
+import { BASE_URL } from '../../config';
 import {  filter, map } from 'rxjs/operators';
 
 @Injectable()
