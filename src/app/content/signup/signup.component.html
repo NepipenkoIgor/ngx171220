@@ -1,3 +1,28 @@
-<p>signup works!</p>
+<div class="auth-content">
+  <mat-card>
+    <mat-card-content>
+      <div [formGroup]="signUpForm" >
+        <p>Sing In to continue</p>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Username" name="username"  formControlName="username">
+                    <mat-error *ngIf="signUpForm.get('username')?.errors?.onlyLetters as onlyLetters">{{onlyLetters}}</mat-error>
+        </mat-form-field>
+        <div formGroupName="passwordGroup" >
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" name="password"
+                   formControlName="password"
+                  >
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password"
+                   formControlName="cpassword"
+                   placeholder="Confirm Password" name="cpassword" >
+          </mat-form-field>
+        </div>
+        <button mat-raised-button [disabled]="signUpForm.invalid"  (click)="signup()">Sign in</button>
+        <a mat-button [routerLink]="['/login']">Login</a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
 
-<span (click)="goToLogin()">Go to Login</span>

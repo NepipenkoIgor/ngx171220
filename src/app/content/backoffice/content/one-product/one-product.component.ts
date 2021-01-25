@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'course-one-product',
@@ -10,32 +9,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OneProductComponent implements OnInit {
 
-  public product$ = this.activatedRoute.paramMap
-    .pipe(
-      switchMap((paramMap) => {
-        const productId = paramMap.get('productId');
-        return this.http.get(`/products/${productId}`)
-      })
-    );
+  public product$ =  this.activatedRoute.data
+    .pipe(pluck('product'));
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private http: HttpClient,
   ) {
   }
 
   ngOnInit(): void {
-    // console.log(this.activatedRoute.snapshot)
-    // this.activatedRoute.paramMap
-    //   .pipe(
-    //     switchMap((paramMap) => {
-    //       const productId = paramMap.get('productId');
-    //       return this.http.get(`/products/${productId}`);
-    //     })
-    //   )
-    //   .subscribe((product) => {
-    //     console.log(product);
-    //   });
+    this.activatedRoute.data.subscribe((v) => {
+      console.log(v);
+    });
   }
 
 }

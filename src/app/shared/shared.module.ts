@@ -15,6 +15,8 @@ import { BASE_URL } from '../config';
 import { environment } from '../../environments/environment';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { AuthGuard } from './auth/auth.guard';
+import { OnlyLettersDirective } from './validators/only-letters.directive';
 
 const internalModules = [
   CommonModule,
@@ -40,6 +42,7 @@ const externalModules = [
   exports: [
     ...internalModules,
     ...externalModules,
+    OnlyLettersDirective
   ],
   providers: [
     {
@@ -47,13 +50,15 @@ const externalModules = [
       useClass: AuthInterceptor,
       multi: true
     },
-  ]
+  ],
+  declarations: [OnlyLettersDirective]
 })
 export class SharedModule {
   public static forRoot(): ModuleWithProviders<SharedModule> {
     return {
       ngModule: SharedModule,
       providers: [
+        AuthGuard,
         {
           provide: BASE_URL,
           useValue: environment.baseUrl,

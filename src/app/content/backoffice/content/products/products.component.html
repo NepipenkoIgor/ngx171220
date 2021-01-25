@@ -6,7 +6,7 @@
 <mat-checkbox (change)="searchByFavorites($event)">Only favorites!</mat-checkbox>
 <mat-grid-list cols="4" rowHeight="500" *ngIf="products$ | async as products; else loader">
   <mat-grid-tile *ngFor="let p of products | productsFilter: searchTerm: onlyFavorites; let isOdd =odd">
-    <course-product-card [product]="p" [isOdd]="isOdd"></course-product-card>
+    <course-product-card [product]="p" [isOdd]="isOdd" ></course-product-card>
   </mat-grid-tile>
 </mat-grid-list>
 <ng-template #loader>

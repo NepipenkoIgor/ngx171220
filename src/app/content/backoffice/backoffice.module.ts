@@ -12,6 +12,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ProductsComponent } from './content/products/products.component';
 import { OneProductComponent } from './content/one-product/one-product.component';
 import { ProductCardComponent } from './content/products/product-card/product-card.component';
+import { OneProductResolverService } from './content/one-product/one-product-resolver.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ProductCardComponent } from './content/products/product-card/product-ca
     BackofficeRoutingModule
   ],
   providers: [
-    ProductsService
+    ProductsService,
+    OneProductResolverService
   ]
 })
 export class BackofficeModule {

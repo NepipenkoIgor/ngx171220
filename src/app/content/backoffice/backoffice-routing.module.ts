@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BackofficeComponent } from './backoffice.component';
 import { ProductsComponent } from './content/products/products.component';
 import { OneProductComponent } from './content/one-product/one-product.component';
+import { OneProductResolverService } from './content/one-product/one-product-resolver.service';
 
 export const routes: Routes = [
   {
@@ -15,7 +16,13 @@ export const routes: Routes = [
       },
       {
         path: ':productId',
-        component: OneProductComponent
+        component: OneProductComponent,
+        data: {
+          title: 'One product'
+        },
+        resolve: {
+          product: OneProductResolverService
+        }
       }
     ]
   }

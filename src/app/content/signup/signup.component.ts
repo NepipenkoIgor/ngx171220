@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'course-signup',
@@ -8,16 +8,35 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+  // public signUpForm = new FormGroup({
+  //   username: new FormControl(),
+  //   passwordGroup: new FormGroup({
+  //     password: new FormControl(),
+  //     cpassword: new FormControl()
+  //   })
+  // });
+
+  public signUpForm!: FormGroup;
+
+  private baseValidators = [Validators.required, Validators.minLength(5)];
+
   constructor(
-    private readonly router: Router
+    private readonly fb: FormBuilder
+    //  private readonly router: Router
   ) {
   }
 
   ngOnInit(): void {
+    this.signUpForm = this.fb.group({
+      username: ['', [...this.baseValidators]],
+      passwordGroup: this.fb.group({
+        password: ['', [...this.baseValidators]],
+        cpassword: ['', [...this.baseValidators]]
+      })
+    });
   }
 
-  public goToLogin(): void {
-    this.router.navigate(['/login']);
+  public signup(): void {
+    console.log(this.signUpForm.value);
   }
-
 }
