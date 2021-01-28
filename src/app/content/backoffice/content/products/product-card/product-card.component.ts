@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProduct } from '../products.service';
 import { ModalService } from '../../../../../modal/modal.service';
+import { IProduct } from '../../../../../store/reducers/products.reducer';
 
 @Component({
   selector: 'course-product-card',

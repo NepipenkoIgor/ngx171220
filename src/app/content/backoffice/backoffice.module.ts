@@ -7,7 +7,6 @@ import { ExchangeRatesDirective } from './header/exchange-rates/exchange-rates.d
 import { HiddenDirective } from './header/exchange-rates/hidden.directive';
 import { BackofficeComponent } from './backoffice.component';
 import { BackofficeRoutingModule } from './backoffice-routing.module';
-import { ProductsService } from './content/products/products.service';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductsComponent } from './content/products/products.component';
 import { OneProductComponent } from './content/one-product/one-product.component';
@@ -33,7 +32,6 @@ import { OneProductResolverService } from './content/one-product/one-product-res
     BackofficeRoutingModule
   ],
   providers: [
-    ProductsService,
     OneProductResolverService
   ]
 })

@@ -1,25 +1,46 @@
 <div class="auth-content">
   <mat-card>
     <mat-card-content>
-      <div [formGroup]="signUpForm" >
+      <div [formGroup]="signUpForm">
         <p>Sing In to continue</p>
         <mat-form-field>
-          <input matInput type="text" placeholder="Username" name="username"  formControlName="username">
-                    <mat-error *ngIf="signUpForm.get('username')?.errors?.onlyLetters as onlyLetters">{{onlyLetters}}</mat-error>
+          <input matInput type="text" placeholder="Username" formControlName="username">
+          <mat-error *ngIf="signUpForm.get('username')?.errors?.onlyLetters as onlyLetters">{{onlyLetters}}</mat-error>
         </mat-form-field>
-        <div formGroupName="passwordGroup" >
+
+
+        <div fxLayout="column">
+          <div fxLayout="row" fxFlex="90"
+               *ngFor="let control of getArrayControls('emails'); index as i; first as f;  count as c;">
+            <mat-form-field>
+              <input matInput type="text" placeholder="Email" [formControl]="control">
+            </mat-form-field>
+            <div fxLayout="row" fxFlex="10">
+              <mat-icon *ngIf="f" (click)="addEmail()">add</mat-icon>
+              <mat-icon *ngIf="c > 1" (click)="removeEmail(i)">delete</mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <div>Male</div>
+          <course-switcher formControlName="male"></course-switcher>
+        </div>
+
+        <div formGroupName="passwordGroup">
           <mat-form-field>
             <input matInput type="password" placeholder="Password" name="password"
                    formControlName="password"
-                  >
+            >
           </mat-form-field>
           <mat-form-field>
             <input matInput type="password"
                    formControlName="cpassword"
-                   placeholder="Confirm Password" name="cpassword" >
+                   placeholder="Confirm Password" name="cpassword">
           </mat-form-field>
         </div>
-        <button mat-raised-button [disabled]="signUpForm.invalid"  (click)="signup()">Sign in</button>
+        <button mat-raised-button [disabled]="signUpForm.invalid || signUpForm.pending" (click)="signup()">Sign in
+        </button>
         <a mat-button [routerLink]="['/login']">Login</a>
       </div>
     </mat-card-content>
