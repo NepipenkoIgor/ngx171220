@@ -4,6 +4,9 @@ import {
 } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { IExchangeRate } from './exchange-rates/exchange-rates.component';
+import { Store } from '@ngrx/store';
+import { IRootState } from '../../../store';
+import { totalProducts } from '../../../store/selector/cart.selector';
 
 @Component({
   selector: 'course-header',
@@ -22,8 +25,16 @@ export class HeaderComponent implements DoCheck {
     {value: 28, currency: 'USD'},
     {value: 0.33, currency: 'RUB'},
     {value: 33, currency: 'EUR'},
-  ]
+  ];
+
+
+  public cartProductsCount$ = this.store.select(totalProducts);
+  constructor(
+    private readonly store: Store<IRootState>,
+  ) {
+  }
+
   public ngDoCheck(): void {
-   // console.log('Detect changes');
+    // console.log('Detect changes');
   }
 }

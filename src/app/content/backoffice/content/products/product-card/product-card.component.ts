@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalService } from '../../../../../modal/modal.service';
 import { IProduct } from '../../../../../store/reducers/products.reducer';
+import { Store } from '@ngrx/store';
+import { IRootState } from '../../../../../store';
+import { addProductToCart } from '../../../../../store/actions/cart.actions';
 
 @Component({
   selector: 'course-product-card',
@@ -22,7 +25,8 @@ export class ProductCardComponent implements OnInit {
   public isOdd!: boolean;
 
   public constructor(
-    private modalService: ModalService
+    private modalService: ModalService,
+    private store: Store<IRootState>,
   ) {
   }
 
@@ -30,14 +34,15 @@ export class ProductCardComponent implements OnInit {
   }
 
   public async addToCart(): Promise<void> {
-    const m = await import('./product-confirmation/product-confirmation.component')
+    const m = await import('./product-confirmation/product-confirmation.component');
     this.modalService.open({
       component: m.ProductConfirmationComponent,
       context: {
         product: {...this.product},
         save: () => {
           // add to cart
-          console.log('Move product to cart')
+          console.log('Move product to cart');
+          this.store.dispatch(addProductToCart({product: {...this.product}}));
           this.modalService.close();
         },
         close: () => {

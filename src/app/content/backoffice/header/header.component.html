@@ -1,4 +1,4 @@
-<mat-toolbar color="primary"  fxLayout="row" fxLayoutAlign="space-between center">
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
   <div>
     <button mat-icon-button class="example-icon" (click)="sideNavDrawer.toggle()"
             aria-label="Example icon-button with menu icon">
@@ -8,11 +8,8 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <course-exchange-rates [rates]="exchangeRates"></course-exchange-rates>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+    <button mat-icon-button [routerLink]="['/backoffice/cart']">
+      <mat-icon [matBadge]="cartProductsCount$ | async" matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
   </div>
 </mat-toolbar>

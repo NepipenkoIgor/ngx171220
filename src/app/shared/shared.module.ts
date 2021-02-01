@@ -17,6 +17,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthGuard } from './auth/auth.guard';
 import { OnlyLettersDirective } from './validators/only-letters.directive';
+import { MatBadgeModule } from '@angular/material/badge';
 
 const internalModules = [
   CommonModule,
@@ -35,6 +36,7 @@ const externalModules = [
   MatFormFieldModule,
   MatInputModule,
   HttpClientModule,
+  MatBadgeModule
 ];
 
 @NgModule({

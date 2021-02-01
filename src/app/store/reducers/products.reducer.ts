@@ -27,7 +27,7 @@ const reducer = createReducer(
   }),
   // tslint:disable-next-line:variable-name
   on(getProductsSuccess, (_stateOfCurrentField: IProductsState, {products: items}) => {
-    return {..._stateOfCurrentField, items, isLoading: false};
+    return {..._stateOfCurrentField, items: [... _stateOfCurrentField.items, ...items] , isLoading: false};
   }),
   on(getProductsError, (stateOfCurrentField: IProductsState) => {
     return {...stateOfCurrentField, isLoading: false};
